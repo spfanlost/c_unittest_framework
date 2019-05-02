@@ -1,7 +1,9 @@
 # c_unittest_framework
 
-### how to use it/
-shell `./loader_make`
+this proj is used for c unittest.
 
-### clean/
+### how to use it
+`./loader_make`
+
+### clean
 `make clean`
