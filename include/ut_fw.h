@@ -1,3 +1,10 @@
+/*-----------------------------------------------------------------------------
+ *      Name:         ut_fw.h 
+ *      Purpose:      unittest framework types and structures description
+ *----------------------------------------------------------------------------
+ *      Copyright(c) 
+ *----------------------------------------------------------------------------*/
+
 #ifndef __UT_FW_H__
 #define __UT_FW_H__
 
@@ -17,6 +24,7 @@
 #define DISP_LOG_COLOR
 #ifdef DISP_LOG_COLOR
 #define LOG_COLOR(color, format, ...) printf("\033[" color "m" format "\033[0m", ##__VA_ARGS__)
+#define COLOR_STR(color, str) ("\033[" color "m" str "\033[0m")
 #else
 #define LOG_COLOR(color, format, ...) ((void)0)
 #endif
@@ -52,19 +60,36 @@
 /* Test case definition macro */
 #define DISABLE 0
 #define ENABLE 1
+
 #define SUCCEED 0
 #define FAILED -1
+
+#ifndef __cplusplus
+#define NULL ((void *)0)  /* C++ */
+#else  
+#define NULL 0  /* C */
+#endif
+
 // TestCaseDefine
-#define TCD(tf, en, pre, end, defresult) {tf,#tf,en,pre,end,defresult}
+#define TCD(en , tf) {tf, #tf, en, tf##_pre, tf##_end, FAILED}
 #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof((arr)[0]))
-typedef int (*CaseFunc_t)(void);
-typedef void (*VoidFunc_t)(void);
+#define ASSERT_WARN(message, test) do { if (!(test)) return message; } while (0)
+#define ASSERT_ERROR(message, test) do { if (!(test)) return message; } while (0)
+#define ASSERT_FAILED(message, test) do { if (!(test)) return message; } while (0)
+#define ASSERT_PASSED(message, test) do { if (!(test)) return message; } while (0)
+
+// /* Assertions and test results */
+// #define mu_assert(message, test) do { if (!(test)) return message; } while (0)
+// #define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
+
 typedef unsigned int    tc_dword;
 typedef unsigned short  tc_word;
 typedef unsigned char   tc_byte;
 typedef int             tc_int;
 typedef short           tc_short;
 typedef char            tc_char;
+typedef int (*CaseFunc_t)(void);
+typedef void (*VoidFunc_t)(void);
 
 /* Test case description structure */
 typedef struct _TestCase_t

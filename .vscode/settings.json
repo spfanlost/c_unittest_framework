@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ut_comm.h": "c",
+        "ut_fw.h": "c"
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
+}

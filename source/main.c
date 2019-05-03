@@ -1,39 +1,60 @@
 
-#include "ut_fw.h"
+#include "ut_comm.h"
 
-int ut_case_int_msix(void){
-    LOG(LOG_INFO,"this case is tests msix interrupt!\n");
-    return SUCCEED;
-}
-void ut_case_pre(void){
-    LOG(LOG_INFO,"ut_case_pre\n");
-}
-void ut_case_end(void){
-    LOG(LOG_INFO,"ut_case_end\n");
-}
 
-int ut_case_reg_scan(void){
-    LOG(LOG_INFO,"this case is tests register scan!\n");
-    return SUCCEED;
-}
-int ut_case_admin_q_write(void){
-    LOG(LOG_INFO,"this case is tests admin q write cmd!\n");
+void ut_case_b_pre(void) {}
+void ut_case_b_end(void) {}
+int ut_case_b(void){
+    LOG(LOG_INFO,"this case is tests b function!\n");
     return FAILED;
 }
-int ut_case_io_q_write(void){
-    LOG(LOG_INFO,"this case is tests io q write cmd!\n");
+
+void ut_case_c_pre(void) {}
+void ut_case_c_end(void) {}
+int ut_case_c(void){
+    LOG(LOG_INFO,"this case is tests c function!\n");
     return SUCCEED;
 }
 
-static TestCase_t TestCaseList[] = {
-    TCD(ut_case_int_msix,         ENABLE, ut_case_pre, ut_case_end, FAILED),
-    TCD(ut_case_reg_scan,         ENABLE, ut_case_pre, ut_case_end, FAILED),
-    TCD(ut_case_admin_q_write,    ENABLE, ut_case_pre, ut_case_end, FAILED),
-    TCD(ut_case_io_q_write,       ENABLE, ut_case_pre, ut_case_end, FAILED),
+TestCase_t TestCaseList[] = {
+    TCD(ENABLE , ut_case_a),
+    TCD(ENABLE , ut_case_b),
+    TCD(DISABLE, ut_case_c),
+    TCD(ENABLE , ut_case_c),
 };
 
-int main(void)
-{
-    test_list_exe(TestCaseList, ARRAY_SIZE(TestCaseList));
-    return 0;    
-}
+//  int tests_run = 0;
+ 
+//  int foo = 7;
+//  int bar = 4;
+ 
+//  static char * test_foo() {
+//      mu_assert("error, foo != 7", foo == 7);
+//      return 0;
+//  }
+ 
+//  static char * test_bar() {
+//      mu_assert("error, bar != 5", bar == 5);
+//      return 0;
+//  }
+ 
+//  static char * all_tests() {
+//      mu_run_test(test_foo);
+//      mu_run_test(test_bar);
+//      return 0;
+//  }
+ 
+ int main(void) {
+    //  char *result = all_tests();
+    //  if (result != 0)  {
+    //      printf("%s\n", result);
+    //  }
+    //  else {
+    //      printf("ALL TESTS PASSED\n");
+    //  }
+    //  printf("Tests run: %d\n", tests_run);
+    //  return result != 0;
+
+     test_list_exe(TestCaseList, ARRAY_SIZE(TestCaseList));
+
+ }
