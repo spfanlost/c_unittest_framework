@@ -64,11 +64,14 @@
 #define SUCCEED 0
 #define FAILED -1
 
-#ifndef __cplusplus
-#define NULL ((void *)0)  /* C++ */
-#else  
-#define NULL 0  /* C */
+#ifndef __clang__
+    #ifndef __cplusplus
+    #define NULL ((void *)0)  /* C++ */
+    #else  
+    #define NULL 0  /* C */
+    #endif
 #endif
+
 
 // TestCaseDefine
 #define TCD(en , tf) {tf, #tf, en, tf##_pre, tf##_end, FAILED}

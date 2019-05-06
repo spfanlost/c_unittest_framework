@@ -12,7 +12,8 @@
 # 	rm -f $(APP_NAME)
 # .PHONY: all clean
 
-CC=gcc
+# CC=gcc
+CC=clang
 APP_NAME := test.run
 INCLUDE := include
 # INCLUDE := $(shell find ./ -name "*.h")
