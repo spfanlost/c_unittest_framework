@@ -27,8 +27,6 @@
 # echo -e "\033[4;31m 下划线红字 \033[0m"  
 
 echo -e "\033[32m----- clean! -> make! -----\033[0m"    
-##find . -type f | xargs -n 5 touch 是为了解决 warning: Clock skew detected. Your build may be incomplete.
-find . -type f | xargs -n 5 touch 
 make -f Makefile clean 
 make -f Makefile all
 echo -e "\n\033[32mrun test!\033[0m" 

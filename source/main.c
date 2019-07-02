@@ -43,8 +43,8 @@ TestCase_t TestCaseList[] = {
 //      mu_run_test(test_bar);
 //      return 0;
 //  }
- 
- int main(void) {
+
+int main(void) {
     //  char *result = all_tests();
     //  if (result != 0)  {
     //      printf("%s\n", result);
@@ -55,6 +55,6 @@ TestCase_t TestCaseList[] = {
     //  printf("Tests run: %d\n", tests_run);
     //  return result != 0;
 
-     test_list_exe(TestCaseList, ARRAY_SIZE(TestCaseList));
+    test_list_exe(TestCaseList, ARRAY_SIZE(TestCaseList));
 
  }
