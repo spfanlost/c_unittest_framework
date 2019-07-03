@@ -7,5 +7,4 @@ void ut_case_a_pre(void);
 void ut_case_a_end(void);
 int ut_case_a(void);
 
-
 #endif

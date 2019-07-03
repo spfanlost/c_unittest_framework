@@ -44,13 +44,9 @@
         if (filter & LOG_FILTER)                                                                                     \
         {                                                                                                            \
             if ((filter & LOG_ERROR) == LOG_ERROR)                                                                   \
-            {                                                                                                        \
                 printf("\033[31mERROR!!! %s:%d %s()\033[0m: " fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__); \
-            }                                                                                                        \
             else if ((filter & LOG_WARN) == LOG_WARN)                                                                \
-            {                                                                                                        \
                 printf("\033[33mWARNING! %s:%d %s()\033[0m: " fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__); \
-            }                                                                                                        \
             else                                                                                                     \
                 printf(fmt, ##__VA_ARGS__);                                                                          \
         }                                                                                                            \
@@ -65,41 +61,63 @@
 #define FAILED -1
 
 #ifndef __clang__
-    #ifndef __cplusplus
-    #define NULL ((void *)0)  /* C++ */
-    #else  
-    #define NULL 0  /* C */
-    #endif
+#ifndef __cplusplus
+#define NULL ((void *)0) /* C++ */
+#else
+#define NULL 0 /* C */
+#endif
 #endif
 
-
 // TestCaseDefine
-#define TCD(en , tf) {tf, #tf, en, tf##_pre, tf##_end, FAILED}
-#define ARRAY_SIZE(arr) (sizeof(arr)/sizeof((arr)[0]))
-#define ASSERT_WARN(message, test) do { if (!(test)) return message; } while (0)
-#define ASSERT_ERROR(message, test) do { if (!(test)) return message; } while (0)
-#define ASSERT_FAILED(message, test) do { if (!(test)) return message; } while (0)
-#define ASSERT_PASSED(message, test) do { if (!(test)) return message; } while (0)
+#define TCD(en, tf)                             \
+    {                                           \
+        tf, #tf, en, tf##_pre, tf##_end, FAILED \
+    }
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+#define ASSERT_WARN(message, test) \
+    do                             \
+    {                              \
+        if (!(test))               \
+            return message;        \
+    } while (0)
+#define ASSERT_ERROR(message, test) \
+    do                              \
+    {                               \
+        if (!(test))                \
+            return message;         \
+    } while (0)
+#define ASSERT_FAILED(message, test) \
+    do                               \
+    {                                \
+        if (!(test))                 \
+            return message;          \
+    } while (0)
+#define ASSERT_PASSED(message, test) \
+    do                               \
+    {                                \
+        if (!(test))                 \
+            return message;          \
+    } while (0)
 
 // /* Assertions and test results */
 // #define mu_assert(message, test) do { if (!(test)) return message; } while (0)
 // #define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
 
-typedef unsigned int    tc_dword;
-typedef unsigned short  tc_word;
-typedef unsigned char   tc_byte;
-typedef int             tc_int;
-typedef short           tc_short;
-typedef char            tc_char;
+typedef unsigned int tc_dword;
+typedef unsigned short tc_word;
+typedef unsigned char tc_byte;
+typedef int tc_int;
+typedef short tc_short;
+typedef char tc_char;
 typedef int (*CaseFunc_t)(void);
 typedef void (*VoidFunc_t)(void);
 
 /* Test case description structure */
 typedef struct _TestCase_t
 {
-    CaseFunc_t CaseFunc;        /* Case function                        */
-    const char *CaseName;       /* Case function name string            */
-    tc_dword En;                /* Case function enabled                */
+    CaseFunc_t CaseFunc;  /* Case function                        */
+    const char *CaseName; /* Case function name string            */
+    tc_dword En;          /* Case function enabled                */
     VoidFunc_t PreFunc;
     VoidFunc_t EndFunc;
     tc_int Result;
@@ -119,22 +137,22 @@ typedef struct _TestSuite_t
 /* Assertion statistics */
 typedef struct _AssertStat_t
 {
-    tc_dword passed;            /* Total assertions passed              */
-    tc_dword failed;            /* Total assertions failed              */
-    tc_dword warnings;          /* Total assertions warnings            */
+    tc_dword passed;   /* Total assertions passed              */
+    tc_dword failed;   /* Total assertions failed              */
+    tc_dword warnings; /* Total assertions warnings            */
 } AssertStat_t;
 
 /* Test global statistics */
 typedef struct _TestReport_t
 {
-    tc_dword tests;             /* Total test cases count               */
-    tc_dword executed;          /* Total test cases executed            */
-    tc_dword passed;            /* Total test cases passed              */
-    tc_dword failed;            /* Total test cases failed              */
-    tc_dword warnings;          /* Total test cases warnings            */
-    AssertStat_t assertions;    /* Total assertions statistics          */
+    tc_dword tests;          /* Total test cases count               */
+    tc_dword executed;       /* Total test cases executed            */
+    tc_dword passed;         /* Total test cases passed              */
+    tc_dword failed;         /* Total test cases failed              */
+    tc_dword warnings;       /* Total test cases warnings            */
+    AssertStat_t assertions; /* Total assertions statistics          */
 } TestReport_t;
 
-tc_dword test_list_exe(TestCase_t * TestList, tc_dword NumOfCase);
+tc_dword test_list_exe(TestCase_t *TestList, tc_dword NumOfCase);
 
 #endif
