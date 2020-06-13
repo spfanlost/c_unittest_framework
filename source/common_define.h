@@ -33,7 +33,6 @@
 #define DWORD_RAND() ((dword_t)rand() << 16 | rand())
 #define RAND_RANGE(s, e) (rand() % ((e) - (s) + 1) + (s))
 
-
 #define ASSERT_WARN(message, test) \
     do                             \
     {                              \

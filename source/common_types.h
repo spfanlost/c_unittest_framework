@@ -22,5 +22,4 @@ typedef unsigned long int qword_t;
 
 
 
-
 #endif

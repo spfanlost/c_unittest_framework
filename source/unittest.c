@@ -29,7 +29,7 @@ dword_t test_list_exe(TestCase_t *CaseList, dword_t NumOfCase)
             __FILE__,
             __DATE__,
             __TIME__,
-            "yumeng,s HC(sata) unittest",
+            "myUnittest",
             CaseList,
             NumOfCase,
         };
@@ -75,10 +75,17 @@ dword_t test_list_exe(TestCase_t *CaseList, dword_t NumOfCase)
     LOG_INFO("CaseNum|Enable|Result|TestFuncName\n");
     for (idx = 0; idx < test_suite.NumOfTestCase; idx++)
     {
-        if (test_suite.TestCase[idx].Result == SUCCEED)
-            LOG_INFO("%4d   |%4d  | %s |%-26s\n", idx, test_suite.TestCase[idx].En, "PASS", test_suite.TestCase[idx].CaseName);
+        if (test_suite.TestCase[idx].En)
+        {
+            if (test_suite.TestCase[idx].Result == SUCCEED)
+                LOG_INFO("%4d   |%4d  | %s |%-26s\n", idx, test_suite.TestCase[idx].En, "PASS", test_suite.TestCase[idx].CaseName);
+            else
+                LOG_COLOR(RED_LOG, "%4d   |%4d  | %s |%-26s\n", idx, test_suite.TestCase[idx].En, "FAIL", test_suite.TestCase[idx].CaseName);
+        }
         else
-            LOG_COLOR(PURPLE_LOG, "%4d   |%4d  | %s |%-26s\n", idx, test_suite.TestCase[idx].En, "FAIL", test_suite.TestCase[idx].CaseName);
+        {
+            LOG_COLOR(SKBLU_LOG, "%4d   |%4d  | %s |%-26s\n", idx, test_suite.TestCase[idx].En, "----", test_suite.TestCase[idx].CaseName);
+        }
     }
     LOG_INFO("Summary: %d Tests, %d Executed, %d Passed, %d Failed, %d Warnings.\n",
              test_report.tests,
