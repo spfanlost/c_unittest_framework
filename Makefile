@@ -12,10 +12,10 @@
 # 	rm -f $(APP_NAME)
 # .PHONY: all clean
 
-# CC=gcc
-CC=clang
+CC=gcc
+# CC=clang
 APP_NAME := test.run
-INCLUDE := include
+INCLUDE := source
 # INCLUDE := $(shell find ./ -name "*.h")
 CFLAGS=-g -W -Wall
 LDFLAGS= -I $(INCLUDE)
