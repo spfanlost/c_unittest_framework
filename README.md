@@ -1,4 +1,4 @@
-# c_unittest_framework
+# myUnittest
 
 this proj is used for c unittest.
 
