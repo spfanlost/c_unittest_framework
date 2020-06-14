@@ -27,33 +27,43 @@
 #define SKBLU_LOG "36"  //天蓝
 #define WHITE_LOG "37"  //白色
 
-#define LOG_PRINT_IF printf 
 //--------------------------------------------------------------------------------
 #ifdef DISP_LOG_DBUG
-#define LOG_DBUG(fmt, ...) LOG_PRINT_IF(fmt, ##__VA_ARGS__)
+#define LOG_DBUG(fmt, ...) PRINT_IF(fmt, ##__VA_ARGS__)
 #else
-#define LOG_DBUG(fmt, ...) do{}while(0)
+#define LOG_DBUG(fmt, ...) do{} while (0)
 #endif
 #ifdef DISP_LOG_INFO
-#define LOG_INFO(fmt, ...) LOG_PRINT_IF(fmt, ##__VA_ARGS__)
+#define LOG_INFO(fmt, ...) PRINT_IF(fmt, ##__VA_ARGS__)
 #else
-#define LOG_INFO(fmt, ...) do{}while(0)
+#define LOG_INFO(fmt, ...) do{} while (0)
 #endif
 #ifdef DISP_LOG_WARN
-#define LOG_WARN(fmt, ...) LOG_PRINT_IF("\033[33mWARNING! %s:%d %s()\033[0m: \r\n" fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+#define LOG_WARN(fmt, ...) PRINT_IF("\033[33mWARNING! %s:%d %s()\033[0m: \r\n" fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
 #else
-#define LOG_WARN(fmt, ...) do{}while(0)
+#define LOG_WARN(fmt, ...) do{} while (0)
 #endif
 #ifdef DISP_LOG_ERROR
-#define LOG_ERROR(fmt, ...) LOG_PRINT_IF("\033[31mERROR!!! %s:%d %s()\033[0m: \r\n" fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
+#define LOG_ERROR(fmt, ...) PRINT_IF("\033[31mERROR!!! %s:%d %s()\033[0m: \r\n" fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__)
 #else
-#define LOG_ERROR(fmt, ...) do{}while(0)
+#define LOG_ERROR(fmt, ...) do{} while (0)
 #endif
 #ifdef DISP_LOG_COLOR
-#define LOG_COLOR(color, fmt, ...) LOG_PRINT_IF("\033[" color "m" fmt "\033[0m", ##__VA_ARGS__)
+#define LOG_COLOR(color, fmt, ...) PRINT_IF("\033[" color "m" fmt "\033[0m", ##__VA_ARGS__)
 #else
-#define LOG_COLOR(color, fmt, ...) do{}while(0)
+#define LOG_COLOR(color, fmt, ...) do{} while (0)
 #endif
 #define COLOR_STR(color, str) ("\033[" color "m" str "\033[0m")
+
+/* Assertions */
+#define ASSERT(test)                                                             \
+    do                                                                           \
+    {                                                                            \
+        if (!(test))                                                             \
+        {                                                                        \
+            PRINT_IF("[E]Assert:" #test " " __FILE__ ":" _STR(__LINE__) "\r\n"); \
+            while (1);                                                           \
+        }                                                                        \
+    } while (0)
 
 #endif

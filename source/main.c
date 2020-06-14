@@ -27,6 +27,6 @@ TestCase_t TestCaseList[] = {
 };
 
 int main(void)
-{
+{    
     test_list_exe(TestCaseList, ARRAY_SIZE(TestCaseList));
 }

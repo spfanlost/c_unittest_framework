@@ -33,33 +33,9 @@
 #define DWORD_RAND() ((dword_t)rand() << 16 | rand())
 #define RAND_RANGE(s, e) (rand() % ((e) - (s) + 1) + (s))
 
-#define ASSERT_WARN(message, test) \
-    do                             \
-    {                              \
-        if (!(test))               \
-            return message;        \
-    } while (0)
-#define ASSERT_ERROR(message, test) \
-    do                              \
-    {                               \
-        if (!(test))                \
-            return message;         \
-    } while (0)
-#define ASSERT_FAILED(message, test) \
-    do                               \
-    {                                \
-        if (!(test))                 \
-            return message;          \
-    } while (0)
-#define ASSERT_PASSED(message, test) \
-    do                               \
-    {                                \
-        if (!(test))                 \
-            return message;          \
-    } while (0)
+#define PRINT_IF printf
 
-// /* Assertions and test results */
-// #define mu_assert(message, test) do { if (!(test)) return message; } while (0)
-// #define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
+#define _VAL(x) #x
+#define _STR(x) _VAL(x)
 
 #endif
