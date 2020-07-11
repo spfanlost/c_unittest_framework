@@ -22,6 +22,7 @@
 #endif
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+#define TYPE_OFST(type,field) ((dword_t)&(((type*)0)->field))
 
 #define MEM32_GET(n) (*(volatile dword_t *)(n))
 #define MEM16_GET(n) (*(volatile word_t *)(n))
@@ -32,6 +33,11 @@
 #define WORD_RAND() ((word_t)rand())
 #define DWORD_RAND() ((dword_t)rand() << 16 | rand())
 #define RAND_RANGE(s, e) (rand() % ((e) - (s) + 1) + (s))
+
+#define BYTE_MASK (0xFF)
+#define WORD_MASK (0xFFFF)
+#define DWORD_MASK (0xFFFFFFFF)
+#define QWORD_MASK (0xFFFFFFFFFFFFFFFF)
 
 #define PRINT_IF printf
 
