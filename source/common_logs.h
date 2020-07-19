@@ -55,6 +55,34 @@
 #endif
 #define COLOR_STR(color, str) ("\033[" color "m" str "\033[0m")
 
+
+//--------------------------------------------------------------------------------
+// #define LOG_DBUG 0x10000000
+// #define LOG_INFO 0x20000000
+// #define LOG_WARN 0x40000000
+// #define LOG_ERROR 0x80000000
+// #define ALL_LOG 0xFFFFFFFF
+// #define LOG_FILTER (LOG_INFO | LOG_WARN | LOG_ERROR) //|LOG_DBUG)
+// // #define LOG_FILTER (ALL_LOG)
+// #define LOG_PRINT_IF printf
+// #define LOG(filter, fmt, ...)                                                                                              
+//     do                                                                                                                     
+//     {                                                                                                                      
+//         if (filter & LOG_FILTER)                                                                                           
+//         {                                                                                                                  
+//             if ((filter & LOG_ERROR) == LOG_ERROR)                                                                         
+//             {                                                                                                              
+//                 LOG_PRINT_IF("\033[31mERROR!!! %s:%d %s()\033[0m: " fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__); 
+//             }                                                                                                              
+//             else if ((filter & LOG_WARN) == LOG_WARN)                                                                      
+//             {                                                                                                              
+//                 LOG_PRINT_IF("\033[33mWARNING! %s:%d %s()\033[0m: " fmt, __FILE__, __LINE__, __FUNCTION__, ##__VA_ARGS__); 
+//             }                                                                                                              
+//             else                                                                                                           
+//                 LOG_PRINT_IF(fmt, ##__VA_ARGS__);                                                                          
+//         }                                                                                                                  
+//     } while (0)
+
 /* Assertions */
 #define ASSERT(test)                                                             \
     do                                                                           \
